@@ -48,8 +48,8 @@ def merge_pdfs(container_client):
     merged_blob_client.upload_blob(merged_pdf_bytes_io.getvalue(), overwrite=True)
 
     # Delete uploaded files
-    # for blob_name in uploaded_paths:
-    #     container_client.get_blob_client(blob_name).delete_blob()
+    for blob_name in uploaded_paths:
+        container_client.get_blob_client(blob_name).delete_blob()
 
     return merged_blob_name
 
