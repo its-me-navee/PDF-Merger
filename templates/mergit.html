@@ -96,11 +96,14 @@
                 displayError('Please select at least two files for merging.');
                 return false;
             }
+            
 
             // Check the size of the first file
-            if (input.files[0].size > maxSize) {
-                displayError('File size exceeds the limit. Please upload a smaller file.');
-                return false;
+            for(var i=0; i<input.files.length; i++){
+                if (input.files[i].size > maxSize) {
+                    displayError('File No. ' + (i+1) + ' size exceeds the limit. Please upload a smaller file.');
+                    return false;
+                }
             }
 
             // Clear any previous error message
