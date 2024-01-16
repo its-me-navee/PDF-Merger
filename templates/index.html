@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,68 +10,49 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
+            background-color: #f8f8f8;
+            /* Set a light background color */
         }
 
         h1 {
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        input[type="file"] {
-            margin-bottom: 10px;
+            color: #397e05;
+            margin-bottom: 30px;
+            /* Add some space below the heading */
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #4caf50;
+            /* Green background color */
             color: white;
-            padding: 10px 15px;
+            /* White text color */
+            padding: 10px 20px;
+            /* Add some padding */
+            font-size: 16px;
             border: none;
+            /* Remove border */
             border-radius: 5px;
+            /* Add rounded corners */
             cursor: pointer;
+            /* Add a pointer cursor on hover */
+            transition: background-color 0.3s;
+            /* Add a smooth transition for background color */
         }
 
         button:hover {
             background-color: #45a049;
-        }
-
-        p {
-            color: #333;
-            margin-top: 10px;
-        }
-
-        a.button {
-            background-color: #008CBA;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        a.button:hover {
-            background-color: #006799;
+            /* Darker green on hover */
         }
     </style>
 </head>
-<body>
-    <h1>PDF Merger</h1>
-    <form action="{{ url_for('merge_pdfs') }}" method="post" enctype="multipart/form-data">
-        <input type="file" name="pdf_files" accept=".pdf" multiple required>
-        <button type="submit">Merge PDFs</button>
-    </form>
 
-    {% if download_link %}
-        <a class="button" href="{{ download_link }}" download>Download Merged PDF</a>
-    {% endif %}
-    
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
+<body>
+    <h1>WELCOME TO PDF FUSION HUB</h1>
+    <button onclick="redirectnew()">MERGE PDF</button>
+    <script>
+        function redirectnew() {
+            window.location.href = "/merge";
+        }
+    </script>
 </body>
+
 </html>
