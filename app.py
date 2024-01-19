@@ -6,9 +6,9 @@ from io import BytesIO
 from merge import merge_pdfs, download_pdf
 from splitter import split_pdfs, download_pdfs
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
-load_dotenv()
+# load_dotenv()
 key_string = os.getenv("key_string")
 
 app = Flask(__name__)
