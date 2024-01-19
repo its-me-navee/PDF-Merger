@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Fusion Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f5f5f5;
+            /* Set a light background color */
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            background-color: #fff;
+            /* Set a white background color for the form */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Add a subtle shadow */
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            /* Add a smooth transition for background color */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            color: #333;
+            margin-top: 10px;
+        }
+
+        a.button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            /* Add a smooth transition for background color */
+        }
+
+        a.button:hover {
+            background-color: #006799;
+        }
+
+        .list-item {
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SPLIT PDF HERE!!</h1>
+    <h2> Select Only One PDF </h2>
+
+    <form action="/break" method="post" enctype="multipart/form-data" onsubmit="return validateFiles()">
+        <input type="file" name="pdf_file" accept=".pdf, application/pdf" required>
+        <!-- <label for="ranges">Enter page ranges (comma-separated):</label> -->
+        <input type="number" name = "upper" required>
+        <input type = "number" name = "lower" required>
+        <!-- <input type="text" name="ranges" id="ranges" required> -->
+        <button type="submit">SPLIT PDF</button>
+        <div id="fileValidationMessage" style="color: red;"></div>
+    </form>
+
+    <script>
+        function validateFiles() {
+            var input = document.querySelector('input[name="pdf_files"]');
+            var maxSize = 10485760; // 10 MB in bytes
+
+            // Check the number of selected files
+            if (input.files.length < 1) {
+                displayError('Please select a file for splitting.');
+                return false;
+            }
+
+
+            // Clear any previous error message
+            clearError();
+            return true;
+        }
+
+        function displayError(message) {
+            var errorMessageElement = document.getElementById('fileValidationMessage');
+            errorMessageElement.textContent = message;
+        }
+
+        function clearError() {
+            var errorMessageElement = document.getElementById('fileValidationMessage');
+            errorMessageElement.textContent = '';
+        }
+    </script>
+
+
+
+    {% if download_link %}
+    <a class="button" href="{{ download_link }}" download>Download SPLIT PDF</a>
+    {% endif %}
+
+</body>
+
+</html>

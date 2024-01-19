@@ -5,6 +5,7 @@ from io import BytesIO
 import uuid
 import datetime
 from merge import merge_pdfs, download_pdf
+from splitter import split_pdfs, download_pdfs
 
 
 app = Flask(__name__)
@@ -47,6 +48,24 @@ def merge():
 @app.route("/download_merged/<filename>")
 def download_merged(filename):
     return download_pdf(container_client, filename)
+
+
+@app.route("/split", methods=["GET"])
+def split_page():
+    return render_template("split.html")
+
+
+@app.route("/break", methods=["GET", "POST"])
+def split():
+    split_blob_name = split_pdfs(container_client)
+    # Provide correct download link
+    download_link = url_for("download_splitted", filename=split_blob_name)
+    return render_template("split.html", download_link=download_link)
+
+
+@app.route("/download_split/<filename>")
+def download_splitted(filename):
+    return download_pdfs(container_client, filename)
 
 
 if __name__ == "__main__":
