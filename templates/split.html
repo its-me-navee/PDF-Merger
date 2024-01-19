@@ -78,6 +78,9 @@
             color: blue;
             font-weight: bold;
         }
+        ::placeholder {
+            color: rgba(0, 0, 0, 0.4); 
+        }
     </style>
 </head>
 
@@ -87,10 +90,11 @@
 
     <form action="/break" method="post" enctype="multipart/form-data" onsubmit="return validateFiles()">
         <input type="file" name="pdf_file" accept=".pdf, application/pdf" required>
-        <!-- <label for="ranges">Enter page ranges (comma-separated):</label> -->
-        <input type="number" name = "upper" required>
-        <input type = "number" name = "lower" required>
-        <!-- <input type="text" name="ranges" id="ranges" required> -->
+        <label for="ranges">Enter page ranges (comma-separated):</label>
+        <h3> eg.- 1-2,3,4-5</h3>
+        <!-- <input type="number" name = "upper" required>
+        <input type = "number" name = "lower" required> -->
+        <input type="text" name="ranges" id="ranges" required placeholder="enter ranges">
         <button type="submit">SPLIT PDF</button>
         <div id="fileValidationMessage" style="color: red;"></div>
     </form>

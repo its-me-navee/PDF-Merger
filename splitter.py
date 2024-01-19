@@ -9,8 +9,9 @@ from flask import request, send_file
 def split_pdfs(container_client):
     # Get uploaded files and splittig range
     pdf_file = request.files.get("pdf_file")
-    upper_val = request.form.get("upper")
-    lower_val = request.form.get("lower")
+    # upper_val = request.form.get("upper")
+    # lower_val = request.form.get("lower")
+    ranges_input = request.form.get("ranges")
     # Save uploaded files to Azure Blob Storage
     uploaded_paths = []
 
@@ -29,12 +30,28 @@ def split_pdfs(container_client):
         # Create a BytesIO object from the downloaded bytes data
         bytes_io = BytesIO(blob_data.readall())
 
+        # Remove spaces from the input
+        ranges_input = ranges_input.replace(" ", "")
+        ranges_list = [range_str.strip() for range_str in ranges_input.split(",")]
         # Use BytesIO object with PyPDF2
         pdf = PdfReader(bytes_io)
-        while upper_val <= lower_val:
-            page = pdf.pages[upper_val]
+        # while upper_val <= lower_val:
+        #     page = pdf.pages[upper_val]
+        #     merged_pdf.add_page(page)
+        #     upper_val += 1
+        # Process each range and create a list of individual page numbers
+        resulting_pages = []
+        for range_str in ranges_list:
+            if "-" in range_str:
+                start, end = map(int, range_str.split("-"))
+                resulting_pages.extend(range(start, end + 1))
+            else:
+                resulting_pages.append(int(range_str))
+
+        for i in resulting_pages:
+            page = pdf.pages[i - 1]
             merged_pdf.add_page(page)
-            upper_val += 1
+        
 
     # Generate a unique filename for the merged PDF
     merged_blob_name = str(uuid.uuid4()) + ".pdf"
