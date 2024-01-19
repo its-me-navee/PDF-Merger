@@ -2,16 +2,17 @@ from flask import Flask, render_template, request, redirect, url_for
 from PyPDF2 import PdfReader, PdfWriter
 from azure.storage.blob import BlobServiceClient, ContainerClient
 from io import BytesIO
-import uuid
-import datetime
+
 from merge import merge_pdfs, download_pdf
 from splitter import split_pdfs, download_pdfs
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+key_string = os.getenv("key_string")
 
 app = Flask(__name__)
-app.config[
-    "AZURE_STORAGE_CONNECTION_STRING"
-] = "DefaultEndpointsProtocol=https;AccountName=navneetsingh;AccountKey=Fh8xbTgypRGVdD5OKcA2yiYGhZs2Z4e6HmsaJ88ykpXJdL+eX/iwFPOrINCWNDqSnVLPl2hVUHNb+AStSE240w==;EndpointSuffix=core.windows.net"
+app.config["AZURE_STORAGE_CONNECTION_STRING"] = key_string
 app.config["AZURE_CONTAINER_NAME"] = "uploads"
 app.config["AZURE_MERGED_FOLDER"] = "merged"
 
