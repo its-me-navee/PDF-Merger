@@ -9,8 +9,7 @@ from flask import request, send_file
 def split_pdfs(container_client):
     # Get uploaded files and splittig range
     pdf_file = request.files.get("pdf_file")
-    # upper_val = request.form.get("upper")
-    # lower_val = request.form.get("lower")
+    
     ranges_input = request.form.get("ranges")
     # Save uploaded files to Azure Blob Storage
     uploaded_paths = []
@@ -35,10 +34,7 @@ def split_pdfs(container_client):
         ranges_list = [range_str.strip() for range_str in ranges_input.split(",")]
         # Use BytesIO object with PyPDF2
         pdf = PdfReader(bytes_io)
-        # while upper_val <= lower_val:
-        #     page = pdf.pages[upper_val]
-        #     merged_pdf.add_page(page)
-        #     upper_val += 1
+        
         # Process each range and create a list of individual page numbers
         resulting_pages = []
         for range_str in ranges_list:
@@ -49,8 +45,9 @@ def split_pdfs(container_client):
                 resulting_pages.append(int(range_str))
 
         for i in resulting_pages:
-            page = pdf.pages[i - 1]
-            merged_pdf.add_page(page)
+            if(i<= len(pdf.pages) and i>0):
+                page = pdf.pages[i - 1]
+                merged_pdf.add_page(page)
         
 
     # Generate a unique filename for the merged PDF
