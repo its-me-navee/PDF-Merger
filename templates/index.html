@@ -4,48 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
     <title>PDF Fusion Hub</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f8f8f8;
-            /* Set a light background color */
-        }
-
-        h1 {
-            color: #397e05;
-            margin-bottom: 30px;
-            /* Add some space below the heading */
-        }
-
-        button {
-            background-color: #4caf50;
-            /* Green background color */
-            color: white;
-            /* White text color */
-            padding: 10px 20px;
-            /* Add some padding */
-            font-size: 16px;
-            border: none;
-            /* Remove border */
-            border-radius: 5px;
-            /* Add rounded corners */
-            cursor: pointer;
-            /* Add a pointer cursor on hover */
-            transition: background-color 0.3s;
-            /* Add a smooth transition for background color */
-        }
-
-        button:hover {
-            background-color: #45a049;
-            /* Darker green on hover */
-        }
-    </style>
 </head>
 
 <body>
+    <header>
+        <nav>
+            <a href="/" title="Go to Home">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="PDF-Fusion-Hub" title="Home">
+            </a>
+        </nav>
+    </header>
+
     <h1>WELCOME TO PDF FUSION HUB</h1>
     <button onclick="redirectnew()">MERGE PDF</button>
     <button onclick="redirectsplit()">SPLIT PDF</button>
@@ -57,6 +30,11 @@
             window.location.href = "/split";
         }
     </script>
+
+    <footer>
+        <p>&copy; 2024 All rights reserved.</p>
+    </footer>
+
 </body>
 
 </html>
