@@ -1,26 +1,24 @@
- body {
-
-     height: 100%;
-     position: relative;
-     font-family: Arial, sans-serif;
-     text-align: center;
-     margin: 50px;
-     background-color: #96d7e7;
-     flex-direction: column;
-     min-height: 100vh; 
-     /* Set a light background color */
- }
+body {
+    height: 100%;
+    position: relative;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+    background-color: #96d7e7;
+    flex-direction: column;
+    min-height: 80vh;
+    display: flex;
+}
 
  h1 {
      color: #397e05;
      margin-bottom: 30px;
-     /* Add some space below the heading */
  }
 
- header,
- footer {
+ header{
+     position: sticky;
      background-color: #dde9e9;
-     /* Set your desired background color */
+     
      padding: 10px;
      display: flex;
      align-items: center;
@@ -31,56 +29,51 @@
 
  nav {
      margin-left: 20px;
-     /* Adjust the margin as needed */
+     
  }
 
  a {
      text-decoration: none;
      color: #fff;
-     /* Set your desired text color */
+     
      font-weight: bold;
      font-size: 18px;
-     /* Set your desired font size */
+     
      margin-right: 20px;
-     /* Adjust the margin as needed */
+     
  }
 
  img {
      max-height: 50px;
-     /* Adjust the maximum height of the logo as needed */
+     
  }
 
  button {
-     background-color: #4caf50;
-     /* Green background color */
+     background-color: #5cb25f;
+     
      color: white;
-     /* White text color */
+     
      padding: 10px 20px;
-     /* Add some padding */
+     margin: auto;
+     
      font-size: 16px;
      border: none;
-     /* Remove border */
-     border-radius: 5px;
-     /* Add rounded corners */
+     
+     border-radius: 10px;
+     
+     
      cursor: pointer;
-     /* Add a pointer cursor on hover */
+     
      transition: background-color 0.3s;
-     /* Add a smooth transition for background color */
+     width: 200px;
+     position: justify;
  }
 
 
- button:hover {
-     background-color: #45a049;
-     /* Darker green on hover */
- }
-
- /* Add some content to the body to push the footer to the bottom */
  main {
-     flex-grow: 1;
-     /* Allow main content to grow and push footer to the bottom */
-     padding: 20px;
-     /* Add padding for better readability */
- }
+    flex-grow: 1;
+    padding: 20px;
+}
 
  form {
      display: flex;
@@ -88,11 +81,10 @@
      align-items: center;
      margin-top: 20px;
      background-color: #fff;
-     /* Set a white background color for the form */
      padding: 20px;
      border-radius: 10px;
      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-     /* Add a subtle shadow */
+     
  }
 
  input[type="file"] {
@@ -102,17 +94,6 @@
  label {
      display: block;
      margin-bottom: 5px;
- }
-
- button {
-     background-color: #4CAF50;
-     color: white;
-     padding: 10px 15px;
-     border: none;
-     border-radius: 5px;
-     cursor: pointer;
-     transition: background-color 0.3s;
-     /* Add a smooth transition for background color */
  }
 
  button:hover {
@@ -132,7 +113,6 @@
      border-radius: 5px;
      margin-top: 10px;
      transition: background-color 0.3s;
-     /* Add a smooth transition for background color */
  }
 
  a.button:hover {
@@ -147,3 +127,13 @@
  ::placeholder {
      color: rgba(0, 0, 0, 0.4);
  }
+ footer {
+    background-color: #dde9e9;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    flex-shrink: 0;
+    margin-top: auto;
+}

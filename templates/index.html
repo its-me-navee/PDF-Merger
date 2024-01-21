@@ -7,6 +7,11 @@
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
+    <link rel="stylesheet" href="static/fonts/fontawesome-all.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="static/fonts/font-awesome.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="static/fonts/ionicons.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="static/fonts/fontawesome5-overrides.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+
     <title>PDF Fusion Hub</title>
 </head>
 
@@ -20,8 +25,12 @@
     </header>
 
     <h1>WELCOME TO PDF FUSION HUB</h1>
-    <button onclick="redirectnew()">MERGE PDF</button>
-    <button onclick="redirectsplit()">SPLIT PDF</button>
+    <button onclick="redirectnew()">
+        <img src="{{ url_for('static', filename='img/merge_icon.png') }}" width="30" height="30"> MERGE PDF
+      </button>
+    <button onclick="redirectsplit()">
+        <img src="{{ url_for('static', filename='img/split_icon.png') }}" width="30" height="30"> 
+        SPLIT PDF</button>
     <script>
         function redirectnew() {
             window.location.href = "/merge";
@@ -30,10 +39,22 @@
             window.location.href = "/split";
         }
     </script>
+    <section>
+        <div class="container">
+          <footer>
+            <div class="social">
 
-    <footer>
-        <p>&copy; 2024 All rights reserved.</p>
-    </footer>
+              <a href="https://github.com/its-me-navee/PDF-Merger">
+                <i class="icon ion-social-github" style="color: black;font-size: 40px;"></i>
+              </a>
+              <a href="mailto:you@navee4501@gmail.com">
+                <i class="fa fa-envelope-o" style="color: black;font-size: 40px;"></i>
+              </a>
+            </div>
+            <p style="font-family:'Times New Roman', Times, serif;text-align: center;">Developed by Sameer & Navneet</p>
+          </footer>
+        </div>
+      </section>
 
 </body>
 

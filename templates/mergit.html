@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="static/fonts/fontawesome-all.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="static/fonts/font-awesome.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="static/fonts/ionicons.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="static/fonts/fontawesome5-overrides.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
     <title>PDF Fusion Hub</title>
 </head>
 
@@ -21,7 +26,10 @@
 
     <form action="/add" method="post" enctype="multipart/form-data" onsubmit="return validateFiles()">
         <input type="file" name="pdf_files" accept=".pdf, application/pdf" multiple required>
-        <button type="submit">Merge PDFs</button>
+        <button type="submit" style="margin: 20px;"> 
+            <img src="{{ url_for('static', filename='img/merge_icon.png') }}" width="30" height="30">
+            Merge PDFs
+        </button>
         <div id="fileValidationMessage" style="color: red;"></div>
     </form>
 
@@ -64,11 +72,27 @@
 
 
     {% if download_link %}
-    <a class="button" href="{{ download_link }}" download>Download Merged PDF</a>
+    <div>
+        <a class="button" style="margin: 20px; width: 200px; position: justify;" href="{{ download_link }}" download>Download Merged PDF</a>
+    </div>
+    
     {% endif %}
-    <footer>
-        <p>&copy; 2024 All rights reserved.</p>
-    </footer>
+    <section style="margin-top: 45vh;">
+        <div class="container">
+          <footer>
+            <div class="social">
+
+              <a href="https://github.com/its-me-navee/PDF-Merger">
+                <i class="icon ion-social-github" style="color: black;font-size: 40px;"></i>
+              </a>
+              <a href="mailto:you@navee4501@gmail.com">
+                <i class="fa fa-envelope-o" style="color: black;font-size: 40px;"></i>
+              </a>
+            </div>
+            <p style="font-family:'Times New Roman', Times, serif;text-align: center;">Developed by Sameer & Navneet</p>
+          </footer>
+        </div>
+      </section>
 </body>
 
 </html>
