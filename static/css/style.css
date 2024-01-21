@@ -1,0 +1,139 @@
+body {
+    height: 100%;
+    position: relative;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+    background-color: #96d7e7;
+    flex-direction: column;
+    min-height: 80vh;
+    display: flex;
+}
+
+ h1 {
+     color: #397e05;
+     margin-bottom: 30px;
+ }
+
+ header{
+     position: sticky;
+     background-color: #dde9e9;
+     
+     padding: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     text-align: center;
+     flex-shrink: 0;
+ }
+
+ nav {
+     margin-left: 20px;
+     
+ }
+
+ a {
+     text-decoration: none;
+     color: #fff;
+     
+     font-weight: bold;
+     font-size: 18px;
+     
+     margin-right: 20px;
+     
+ }
+
+ img {
+     max-height: 50px;
+     
+ }
+
+ button {
+     background-color: #5cb25f;
+     
+     color: white;
+     
+     padding: 10px 20px;
+     margin: auto;
+     
+     font-size: 16px;
+     border: none;
+     
+     border-radius: 10px;
+     
+     
+     cursor: pointer;
+     
+     transition: background-color 0.3s;
+     width: 200px;
+     position: justify;
+ }
+
+
+ main {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+ form {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-top: 20px;
+     background-color: #fff;
+     padding: 20px;
+     border-radius: 10px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     
+ }
+
+ input[type="file"] {
+     margin-bottom: 10px;
+ }
+
+ label {
+     display: block;
+     margin-bottom: 5px;
+ }
+
+ button:hover {
+     background-color: #45a049;
+ }
+
+ p {
+     color: #333;
+     margin-top: 10px;
+ }
+
+ a.button {
+     background-color: #008CBA;
+     color: white;
+     padding: 10px 15px;
+     text-decoration: none;
+     border-radius: 5px;
+     margin-top: 10px;
+     transition: background-color 0.3s;
+ }
+
+ a.button:hover {
+     background-color: #006799;
+ }
+
+ .list-item {
+     color: blue;
+     font-weight: bold;
+ }
+
+ ::placeholder {
+     color: rgba(0, 0, 0, 0.4);
+ }
+ footer {
+    background-color: #dde9e9;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    flex-shrink: 0;
+    margin-top: auto;
+}

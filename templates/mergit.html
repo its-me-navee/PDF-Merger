@@ -4,85 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="static/fonts/fontawesome-all.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="static/fonts/font-awesome.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="static/fonts/ionicons.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="static/fonts/fontawesome5-overrides.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
     <title>PDF Fusion Hub</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f5f5f5;
-            /* Set a light background color */
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-            background-color: #fff;
-            /* Set a white background color for the form */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            /* Add a subtle shadow */
-        }
-
-        input[type="file"] {
-            margin-bottom: 10px;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            /* Add a smooth transition for background color */
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        p {
-            color: #333;
-            margin-top: 10px;
-        }
-
-        a.button {
-            background-color: #008CBA;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-            /* Add a smooth transition for background color */
-        }
-
-        a.button:hover {
-            background-color: #006799;
-        }
-
-        .list-item {
-            color: blue;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
+    <header>
+        <nav>
+            <a href="/" title="Go to Home">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="PDF-Fusion-Hub" title="Home">
+            </a>
+        </nav>
+    </header>
     <h1>MERGE PDF HERE!!</h1>
 
     <form action="/add" method="post" enctype="multipart/form-data" onsubmit="return validateFiles()">
         <input type="file" name="pdf_files" accept=".pdf, application/pdf" multiple required>
-        <button type="submit">Merge PDFs</button>
+        <button type="submit" style="margin: 20px;"> 
+            <img src="{{ url_for('static', filename='img/merge_icon.png') }}" width="30" height="30">
+            Merge PDFs
+        </button>
         <div id="fileValidationMessage" style="color: red;"></div>
     </form>
 
@@ -96,12 +43,12 @@
                 displayError('Please select at least two files for merging.');
                 return false;
             }
-            
+
 
             // Check the size of the first file
-            for(var i=0; i<input.files.length; i++){
+            for (var i = 0; i < input.files.length; i++) {
                 if (input.files[i].size > maxSize) {
-                    displayError('File No. ' + (i+1) + ' size exceeds the limit. Please upload a smaller file.');
+                    displayError('File No. ' + (i + 1) + ' size exceeds the limit. Please upload a smaller file.');
                     return false;
                 }
             }
@@ -125,9 +72,27 @@
 
 
     {% if download_link %}
-    <a class="button" href="{{ download_link }}" download>Download Merged PDF</a>
+    <div>
+        <a class="button" style="margin: 20px; width: 200px; position: justify;" href="{{ download_link }}" download>Download Merged PDF</a>
+    </div>
+    
     {% endif %}
+    <section style="margin-top: 45vh;">
+        <div class="container">
+          <footer>
+            <div class="social">
 
+              <a href="https://github.com/its-me-navee/PDF-Merger">
+                <i class="icon ion-social-github" style="color: black;font-size: 40px;"></i>
+              </a>
+              <a href="mailto:you@navee4501@gmail.com">
+                <i class="fa fa-envelope-o" style="color: black;font-size: 40px;"></i>
+              </a>
+            </div>
+            <p style="font-family:'Times New Roman', Times, serif;text-align: center;">Developed by Sameer & Navneet</p>
+          </footer>
+        </div>
+      </section>
 </body>
 
 </html>
