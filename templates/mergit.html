@@ -1,98 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='img/favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-    <link rel="stylesheet" href="static/fonts/fontawesome-all.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
-    <link rel="stylesheet" href="static/fonts/font-awesome.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
-    <link rel="stylesheet" href="static/fonts/ionicons.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
-    <link rel="stylesheet" href="static/fonts/fontawesome5-overrides.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link
+      rel="stylesheet"
+      href="static/fonts/fontawesome-all.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba"
+    />
+    <link
+      rel="stylesheet"
+      href="static/fonts/font-awesome.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba"
+    />
+    <link
+      rel="stylesheet"
+      href="static/fonts/ionicons.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba"
+    />
+    <link
+      rel="stylesheet"
+      href="static/fonts/fontawesome5-overrides.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba"
+    />
     <title>PDF Fusion Hub</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav>
-            <a href="/" title="Go to Home">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="PDF-Fusion-Hub" title="Home">
-            </a>
-        </nav>
+      <nav>
+        <a href="/" title="Go to Home">
+          <img
+            src="{{ url_for('static', filename='img/logo.png') }}"
+            alt="PDF-Fusion-Hub"
+            title="Home"
+          />
+        </a>
+      </nav>
     </header>
     <h1>MERGE PDF HERE!!</h1>
 
-    <form action="/add" method="post" enctype="multipart/form-data" onsubmit="return validateFiles()">
-        <input type="file" name="pdf_files" accept=".pdf, application/pdf" multiple required>
-        <button type="submit" style="margin: 20px;"> 
-            <img src="{{ url_for('static', filename='img/merge_icon.png') }}" width="30" height="30">
-            Merge PDFs
-        </button>
-        <div id="fileValidationMessage" style="color: red;"></div>
+    <form
+      action="/add"
+      method="post"
+      enctype="multipart/form-data"
+      onsubmit="return validateFiles()"
+    >
+      <input
+        type="file"
+        name="pdf_files"
+        accept=".pdf, application/pdf"
+        multiple
+        required
+      />
+      <input
+        type="text"
+        name="fileName"
+        placeholder="Enter Name of Merged File"
+        style="width: 13rem; text-align: center"
+        required
+      />
+      <button type="submit" style="margin: 20px">
+        <img
+          src="{{ url_for('static', filename='img/merge_icon.png') }}"
+          width="30"
+          height="30"
+        />
+        Merge PDFs
+      </button>
+      <div id="fileValidationMessage" style="color: red"></div>
     </form>
 
     <script>
-        function validateFiles() {
-            var input = document.querySelector('input[name="pdf_files"]');
-            var maxSize = 1048576; // 1 MB in bytes
+      function validateFiles() {
+        var input = document.querySelector('input[name="pdf_files"]');
+        var maxSize = 1048576; // 1 MB in bytes
 
-            // Check the number of selected files
-            if (input.files.length < 2) {
-                displayError('Please select at least two files for merging.');
-                return false;
-            }
-
-
-            // Check the size of the first file
-            for (var i = 0; i < input.files.length; i++) {
-                if (input.files[i].size > maxSize) {
-                    displayError('File No. ' + (i + 1) + ' size exceeds the limit. Please upload a smaller file.');
-                    return false;
-                }
-            }
-
-            // Clear any previous error message
-            clearError();
-            return true;
+        // Check the number of selected files
+        if (input.files.length < 2) {
+          displayError("Please select at least two files for merging.");
+          return false;
         }
 
-        function displayError(message) {
-            var errorMessageElement = document.getElementById('fileValidationMessage');
-            errorMessageElement.textContent = message;
+        // Check the size of the first file
+        for (var i = 0; i < input.files.length; i++) {
+          if (input.files[i].size > maxSize) {
+            displayError(
+              "File No. " +
+                (i + 1) +
+                " size exceeds the limit. Please upload a smaller file."
+            );
+            return false;
+          }
         }
 
-        function clearError() {
-            var errorMessageElement = document.getElementById('fileValidationMessage');
-            errorMessageElement.textContent = '';
-        }
+        // Clear any previous error message
+        clearError();
+        return true;
+      }
+
+      function displayError(message) {
+        var errorMessageElement = document.getElementById(
+          "fileValidationMessage"
+        );
+        errorMessageElement.textContent = message;
+      }
+
+      function clearError() {
+        var errorMessageElement = document.getElementById(
+          "fileValidationMessage"
+        );
+        errorMessageElement.textContent = "";
+      }
     </script>
-
-
 
     {% if download_link %}
     <div>
-        <a class="button" style="margin: 20px; width: 200px; position: justify;" href="{{ download_link }}" download>Download Merged PDF</a>
+      <a
+        class="button"
+        style="margin: 20px; width: 200px; position: justify"
+        href="{{ download_link }}"
+        download
+        >Download Merged PDF</a
+      >
     </div>
-    
+
     {% endif %}
-    <section style="margin-top: 45vh;">
-        <div class="container">
-          <footer>
-            <div class="social">
-
-              <a href="https://github.com/its-me-navee/PDF-Merger">
-                <i class="icon ion-social-github" style="color: black;font-size: 40px;"></i>
-              </a>
-              <a href="mailto:you@navee4501@gmail.com">
-                <i class="fa fa-envelope-o" style="color: black;font-size: 40px;"></i>
-              </a>
-            </div>
-            <p style="font-family:'Times New Roman', Times, serif;text-align: center;">Developed by Sameer & Navneet</p>
-          </footer>
-        </div>
-      </section>
-</body>
-
+    <section style="margin-top: 45vh">
+      <div class="container">
+        <footer>
+          <div class="social">
+            <a href="https://github.com/its-me-navee/PDF-Merger">
+              <i
+                class="icon ion-social-github"
+                style="color: black; font-size: 40px"
+              ></i>
+            </a>
+            <a href="mailto:you@navee4501@gmail.com">
+              <i
+                class="fa fa-envelope-o"
+                style="color: black; font-size: 40px"
+              ></i>
+            </a>
+          </div>
+          <p
+            style="
+              font-family: 'Times New Roman', Times, serif;
+              text-align: center;
+            "
+          >
+            Developed by Sameer & Navneet
+          </p>
+        </footer>
+      </div>
+    </section>
+  </body>
 </html>

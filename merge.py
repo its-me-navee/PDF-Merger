@@ -9,6 +9,7 @@ from flask import request, send_file
 def merge_pdfs(container_client):
     # Get uploaded files
     pdf_files = request.files.getlist("pdf_files")
+    mergedFileName = request.form.get("fileName")
 
     # Save uploaded files to Azure Blob Storage
     uploaded_paths = []
@@ -35,7 +36,7 @@ def merge_pdfs(container_client):
             merged_pdf.add_page(page)
 
     # Generate a unique filename for the merged PDF
-    merged_blob_name = str(uuid.uuid4()) + ".pdf"
+    merged_blob_name = mergedFileName + ".pdf"
 
     # Save merged PDF to Azure Blob Storage
     merged_blob_client = container_client.get_blob_client(merged_blob_name)
